@@ -1,0 +1,24 @@
+[
+    {
+        "AfterZip":  [
+                         "Copy-Item -Path $_.Ps1 -Destination Build.ps1 -Force",
+                         "Write-Verbose -Message ($_ | ConvertTo-Json -Depth 1)"
+                     ],
+        "Function":  "Invoke-ModuleBuild",
+        "Guid":  "e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f",
+        "TargetName":  "Invoke-ModuleBuild",
+        "Type":  "ScriptFromFunction",
+        "VersionAppendDate":  true
+    },
+    {
+        "AfterZip":  [
+                         "Write-Verbose -Message ($_ | ConvertTo-Json -Depth 1)"
+                     ],
+        "BeforeZip":  [
+                          "$dir = Join-Path -Path $_.TargetDirectory -ChildPath Resources; $null = New-Item -Path $dir -ItemType Directory; Copy-Item -Path Build.ps1 -Destination $dir"
+                      ],
+        "TargetName":  "PowerShellModuleTools",
+        "Type":  "Module",
+        "VersionAppendDate":  true
+    }
+]
