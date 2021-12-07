@@ -1,5 +1,18 @@
 function Invoke-ModuleBuild
 {
+    <#
+        .SYNOPSIS
+            Build module
+
+        .DESCRIPTION
+            Build module - combine files to psm1, create psd1, zip it, ...
+
+        .PARAMETER Path
+            Path
+
+        .EXAMPLE
+            Invoke-ModuleBuild
+    #>
     [CmdletBinding(DefaultParameterSetName = 'JsonFile')]
     [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssignments',         'type', Justification='Variable IS used, ScriptAnalyzer is wrong')]
     [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssignments',         'h',    Justification='Variable IS used, ScriptAnalyzer is wrong')]

@@ -22,7 +22,7 @@ CompanyName = 'Someone'
 Copyright = 'This is free and unencumbered software released into the public domain'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Tools to make PowerShell module creation/build/updating easier'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -90,10 +90,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://unlicense.org/'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/thordreier/PowerShellModuleTools'
 
         # A URL to an icon representing this module.
         # IconUri = ''

@@ -1,12 +1,12 @@
 <#PSScriptInfo
-	.VERSION 0.1.20211203.133404
+	.VERSION 0.1.20211207.123453
 	.GUID e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f
 	.AUTHOR Thor Dreier
 	.COMPANYNAME Someone
 	.COPYRIGHT This is free and unencumbered software released into the public domain
 	.TAGS
-	.LICENSEURI
-	.PROJECTURI
+	.LICENSEURI https://unlicense.org/
+	.PROJECTURI https://github.com/thordreier/PowerShellModuleTools
 	.ICONURI
 	.EXTERNALMODULEDEPENDENCIES
 	.REQUIREDSCRIPTS
@@ -14,7 +14,19 @@
 	.RELEASENOTES
 #>
 
-# Error in this is terminating
+<#
+        .SYNOPSIS
+            Build module
+
+        .DESCRIPTION
+            Build module - combine files to psm1, create psd1, zip it, ...
+
+        .PARAMETER Path
+            Path
+
+        .EXAMPLE
+            Invoke-ModuleBuild
+    #>
 param (
         [Parameter()]
         [String]
@@ -136,6 +148,19 @@ param (
 
 function Invoke-ModuleBuild
 {
+    <#
+        .SYNOPSIS
+            Build module
+
+        .DESCRIPTION
+            Build module - combine files to psm1, create psd1, zip it, ...
+
+        .PARAMETER Path
+            Path
+
+        .EXAMPLE
+            Invoke-ModuleBuild
+    #>
     [CmdletBinding(DefaultParameterSetName = 'JsonFile')]
     [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssignments',         'type', Justification='Variable IS used, ScriptAnalyzer is wrong')]
     [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssignments',         'h',    Justification='Variable IS used, ScriptAnalyzer is wrong')]
