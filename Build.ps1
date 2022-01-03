@@ -1,5 +1,5 @@
 <#PSScriptInfo
-	.VERSION 0.1.20211207.123453
+	.VERSION 0.1.20220103.111013
 	.GUID e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f
 	.AUTHOR Thor Dreier
 	.COMPANYNAME Someone
@@ -619,7 +619,12 @@ function Invoke-ModuleBuild
                     # Create module file
                     $variables.Psm1 = CreateFile -Dir $variables.TargetDirectory -Name "$($variables.TargetName).psm1" -Content $psm1Content -NoTrim:$NoTrim
 
-                    # TODO cleanup temp files
+                    # Include extra files
+                    if (Test-Path -Path $IncludeFileDir)
+                    {
+                        Copy-Item -Recurse -Path (JoinPath $IncludeFileDir,'*') -Destination $variables.TargetDirectory
+                    }
+
                     $psd1Tmp = Join-Path -Path $variables.TargetDirectory -ChildPath tmp.psd1
                     if ($manifestFileInfo)
                     {
@@ -656,12 +661,6 @@ function Invoke-ModuleBuild
                         $psd1Content = $psd1Content -replace '^(#.*(\r?\n)+)*',''
                     }
                     $variables.Psd1 = CreateFile -Dir $variables.TargetDirectory -Name "$($variables.TargetName).psd1" -Content $psd1Content -NoTrim:$NoTrim
-
-                    # Include extra files
-                    if (Test-Path -Path $IncludeFileDir)
-                    {
-                        Copy-Item -Recurse -Path (JoinPath $IncludeFileDir,'*') -Destination $variables.TargetDirectory
-                    }
                 }
                 elseif ($PSCmdlet.ParameterSetName -eq 'ScriptFromTemplate')
                 {
