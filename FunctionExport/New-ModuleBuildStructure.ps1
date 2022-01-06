@@ -1,5 +1,18 @@
 function New-ModuleBuildStructure
 {
+    <#
+        .SYNOPSIS
+            New module
+
+        .DESCRIPTION
+            New module
+
+        .PARAMETER Path
+            Path
+
+        .EXAMPLE
+            New-ModuleBuildStructure
+    #>
     [CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = 'Low')]
     param (
         [Parameter()]

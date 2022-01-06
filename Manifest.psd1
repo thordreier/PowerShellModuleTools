@@ -16,7 +16,7 @@ GUID = '2621172d-f337-4958-900b-08ab00f8dcec'
 Author = 'Thor Dreier'
 
 # Company or vendor of this module
-CompanyName = 'Someone'
+CompanyName = 'Thor Dreier'
 
 # Copyright statement for this module
 Copyright = 'This is free and unencumbered software released into the public domain'
@@ -112,7 +112,7 @@ PrivateData = @{
 
     } # End of PSData hashtable
 
-} # End of PrivateData hashtable
+ } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''
