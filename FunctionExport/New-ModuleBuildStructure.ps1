@@ -61,7 +61,8 @@ function New-ModuleBuildStructure
         param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)] [String]      $Path,
         [Parameter(Mandatory = $true)]                            [ScriptBlock] $ScriptBlock,
-        [Parameter()][ValidateSet('File', 'Directory')]           [String]      $Type = 'File'
+        [Parameter()][ValidateSet('File', 'Directory')]           [String]      $Type = 'File',
+        [Parameter()]                                             [switch]      $Existing
         )
 
         process
@@ -83,17 +84,19 @@ function New-ModuleBuildStructure
 
                 if (Test-Path -Path $Path -PathType $pathType)
                 {
-                    Write-Warning -Message $warnMsg
+                    if (-not $Existing)
+                    {
+                        Write-Warning -Message $warnMsg
+                        return
+                    }
                 }
                 else
                 {
                     Write-Error -Message $errMsg
+                    return
                 }
             }
-            else
-            {
-                . $ScriptBlock
-            }
+            . $ScriptBlock
         }
     }
 
@@ -238,13 +241,15 @@ function New-ModuleBuildStructure
                 New-ModuleManifest -Path $Path @ManifestParameters @manifestParametersNew
             }
 
-            # Update Manifest
-            # Update-ModuleManifest produces nicer content than New-ModuleManifest (eg. UTF-8)
-            Update-ModuleManifest -Path $ManifestFile @ManifestParameters
-            (Get-Content -Path $ManifestFile -Raw) -replace '^(#.*(\r?\n)+)*','' | Set-Content -Path $ManifestFile
+            # Update Manifest.psd1
+            CreatePath -Path $ManifestFile -Existing -ScriptBlock {
+                # Update-ModuleManifest produces nicer content than New-ModuleManifest (eg. UTF-8)
+                Update-ModuleManifest -Path $Path @ManifestParameters
+                (Get-Content -Path $Path -Raw) -replace '^(#.*(\r?\n)+)*','' | Set-Content -Path $Path
+            }
 
             # Copy Build.ps1
-            CreatePath -Path $BuildFile -ScriptBlock {
+            CreatePath -Path $BuildFile -Existing -ScriptBlock {
                 Write-Verbose -Message "Creating file $Path"
                 $resourceBuild = Join-Path -Path $resourcesPath -ChildPath 'Build.ps1'
                 Get-Content -Raw -Path $resourceBuild | Set-Content -Path $Path  # Not using Copy-Item to avoid NTFS properties copied
