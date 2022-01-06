@@ -243,6 +243,7 @@ function New-ModuleBuildStructure
 
             # Update Manifest.psd1
             CreatePath -Path $ManifestFile -Existing -ScriptBlock {
+                Write-Verbose -Message "Updating file $Path"
                 # Update-ModuleManifest produces nicer content than New-ModuleManifest (eg. UTF-8)
                 Update-ModuleManifest -Path $Path @ManifestParameters
                 (Get-Content -Path $Path -Raw) -replace '^(#.*(\r?\n)+)*','' | Set-Content -Path $Path
@@ -250,7 +251,7 @@ function New-ModuleBuildStructure
 
             # Copy Build.ps1
             CreatePath -Path $BuildFile -Existing -ScriptBlock {
-                Write-Verbose -Message "Creating file $Path"
+                Write-Verbose -Message "Updating file $Path"
                 $resourceBuild = Join-Path -Path $resourcesPath -ChildPath 'Build.ps1'
                 Get-Content -Raw -Path $resourceBuild | Set-Content -Path $Path  # Not using Copy-Item to avoid NTFS properties copied
             }
