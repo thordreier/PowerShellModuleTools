@@ -21,7 +21,7 @@ function New-ModuleBuildStructure
 
         [Parameter()]
         [String[]]
-        $Directory = @('Alias', 'Class', 'FunctionExport', 'FunctionPrivate'),
+        $Directory = @('Alias', 'Class', 'FunctionExport', 'FunctionPrivate', 'Include', 'IncludeFile'),
 
         [Parameter()]
         [String]
@@ -151,8 +151,9 @@ function New-ModuleBuildStructure
             # Content of Build.json - if IncludeExamples is defined then more will be appended
             $jsonContent = @(
                 @{
-                    TargetName = $TargetName
-                    Type       = 'Module'
+                    TargetName        = $TargetName
+                    Type              = 'Module'
+                    VersionAppendDate = $true
                 }
             )
 
@@ -233,13 +234,14 @@ function New-ModuleBuildStructure
             # Create Manifest.psd1
             CreatePath -Path $ManifestFile -ScriptBlock {
                 Write-Verbose -Message "Creating file $Path"
-                # Update-ModuleManifest produces nicer content than New-ModuleManifest (eg. UTF-8)
-                $ManifestParameters['Path'] = $Path
-                if (-not $ManifestParameters['RootModule']) {$ManifestParameters['RootModule'] = "$($TargetName).psm1"}
-                New-ModuleManifest @ManifestParameters
-                Update-ModuleManifest -Path $Path
-                (Get-Content -Path $Path -Raw) -replace '^(#.*(\r?\n)+)*','' | Set-Content -Path $Path
+                $manifestParametersNew = if ($ManifestParameters['RootModule']) { @{} } else { @{RootModule = "$($TargetName).psm1"} }
+                New-ModuleManifest -Path $Path @ManifestParameters @manifestParametersNew
             }
+
+            # Update Manifest
+            # Update-ModuleManifest produces nicer content than New-ModuleManifest (eg. UTF-8)
+            Update-ModuleManifest -Path $ManifestFile @ManifestParameters
+            (Get-Content -Path $ManifestFile -Raw) -replace '^(#.*(\r?\n)+)*','' | Set-Content -Path $ManifestFile
 
             # Copy Build.ps1
             CreatePath -Path $BuildFile -ScriptBlock {

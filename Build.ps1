@@ -1,8 +1,8 @@
 <#PSScriptInfo
-	.VERSION 0.1.20220103.111013
+	.VERSION 0.1.20220106.105407
 	.GUID e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f
 	.AUTHOR Thor Dreier
-	.COMPANYNAME Someone
+	.COMPANYNAME Thor Dreier
 	.COPYRIGHT This is free and unencumbered software released into the public domain
 	.TAGS
 	.LICENSEURI https://unlicense.org/
