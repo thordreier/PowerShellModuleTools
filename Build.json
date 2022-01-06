@@ -1,7 +1,7 @@
 [
     {
         "AfterZip":  [
-                         "if ($global:UpdateBuildPs1File) {Copy-Item -Path $_.Ps1 -Destination Build.ps1 -Force} else {'$global:UpdateBuildPs1File = $true  # Set to update Build.ps1 file in current dir' | Write-Host}",
+                         "$global:LatestBuildScriptPs1FilePath = $_.Ps1",
                          "Write-Verbose -Message ($_ | ConvertTo-Json -ErrorAction SilentlyContinue -Depth 1)"
                      ],
         "Function":  "Invoke-ModuleBuild",
@@ -15,7 +15,7 @@
                          "Write-Verbose -Message ($_ | ConvertTo-Json -ErrorAction SilentlyContinue -Depth 1)"
                      ],
         "BeforeZip":  [
-                          "$dir = Join-Path -Path $_.TargetDirectory -ChildPath Resources; $null = New-Item -Path $dir -ItemType Directory; Copy-Item -Path Build.ps1 -Destination $dir"
+                          "$dir = Join-Path -Path $_.TargetDirectory -ChildPath Resources; $null = New-Item -Path $dir -ItemType Directory; Copy-Item -Path $global:LatestBuildScriptPs1FilePath -Destination (Join-Path -Path $dir -ChildPath Build.ps1)"
                       ],
         "TargetName":  "PowerShellModuleTools",
         "Type":  "Module",
