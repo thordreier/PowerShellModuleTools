@@ -183,34 +183,62 @@ REMARKS
 ### New-ModuleBuildStructure
 
 ```
+NAME
+    New-ModuleBuildStructure
+    
+SYNOPSIS
+    New module
+    
+    
+SYNTAX
+    New-ModuleBuildStructure [[-Path] <String>] [[-Directory] <String[]>] [[-JsonFile] <String>] [[-ManifestFile] <String>] [[-BuildFile] <String>] [[-TargetName] <String>] [-IncludeExamples] [[-ManifestParameters] <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    New module
+    
 
-CommonParameters         : True
-WorkflowCommonParameters : False
-details                  : @{name=New-ModuleBuildStructure; noun=; verb=}
-Syntax                   : @{syntaxItem=System.Object[]}
-parameters               : @{parameter=System.Object[]}
-inputTypes               : @{inputType=}
-returnValues             : @{returnValue=}
-aliases                  : None
-                           
-remarks                  : None
-alertSet                 : 
-description              : 
-examples                 : 
-Synopsis                 : 
-                           New-ModuleBuildStructure [[-Path] <string>] [[-Directory] <string[]>] [[-JsonFile] <string>] [[-ManifestFile] <string>] [[-BuildFile] <string>] [[-TargetName] <string>] [[-ManifestParameters] <hashtable>] [-IncludeExamples] [-WhatIf] [-Confirm] [<C
-                           ommonParameters>]
-                           
-ModuleName               : PowerShellModuleTools
-nonTerminatingErrors     : 
-xmlns:command            : http://schemas.microsoft.com/maml/dev/command/2004/10
-xmlns:dev                : http://schemas.microsoft.com/maml/dev/2004/10
-xmlns:maml               : http://schemas.microsoft.com/maml/2004/10
-Name                     : New-ModuleBuildStructure
-Category                 : Function
-Component                : 
-Role                     : 
-Functionality            : 
+PARAMETERS
+    -Path <String>
+        Path
+        
+    -Directory <String[]>
+        
+    -JsonFile <String>
+        
+    -ManifestFile <String>
+        
+    -BuildFile <String>
+        
+    -TargetName <String>
+        
+    -IncludeExamples [<SwitchParameter>]
+        
+    -ManifestParameters <Hashtable>
+        
+    -WhatIf [<SwitchParameter>]
+        
+    -Confirm [<SwitchParameter>]
+        
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>New-ModuleBuildStructure
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help New-ModuleBuildStructure -examples".
+    For more information, type: "get-help New-ModuleBuildStructure -detailed".
+    For technical information, type: "get-help New-ModuleBuildStructure -full".
 
 ```
 
