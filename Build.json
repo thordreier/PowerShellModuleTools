@@ -1,8 +1,8 @@
 [
     {
         "AfterZip":  [
-                         "Copy-Item -Path $_.Ps1 -Destination Build.ps1 -Force",
-                         "Write-Verbose -Message ($_ | ConvertTo-Json -Depth 1)"
+                         "if ($global:UpdateBuildPs1File) {Copy-Item -Path $_.Ps1 -Destination Build.ps1 -Force} else {'$global:UpdateBuildPs1File = $true  # Set to update Build.ps1 file in current dir' | Write-Host}",
+                         "Write-Verbose -Message ($_ | ConvertTo-Json -ErrorAction SilentlyContinue -Depth 1)"
                      ],
         "Function":  "Invoke-ModuleBuild",
         "Guid":  "e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f",
@@ -12,7 +12,7 @@
     },
     {
         "AfterZip":  [
-                         "Write-Verbose -Message ($_ | ConvertTo-Json -Depth 1)"
+                         "Write-Verbose -Message ($_ | ConvertTo-Json -ErrorAction SilentlyContinue -Depth 1)"
                      ],
         "BeforeZip":  [
                           "$dir = Join-Path -Path $_.TargetDirectory -ChildPath Resources; $null = New-Item -Path $dir -ItemType Directory; Copy-Item -Path Build.ps1 -Destination $dir"
