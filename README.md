@@ -2,9 +2,19 @@
 
 PowerShell functions for making module management easier.
 
-## Functions
+## Usage
 
-See [FUNCTIONS.md](FUNCTIONS.md) for usage of this module.
+### Examples
+
+```powershell
+# Write example here
+```
+
+Examples are also found in [EXAMPLES.ps1](EXAMPLES.ps1).
+
+### Functions
+
+See [FUNCTIONS.md](FUNCTIONS.md) for documentation of funtions in this module.
 
 ## Install
 
