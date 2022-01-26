@@ -1,5 +1,5 @@
 <#PSScriptInfo
-	.VERSION 0.2
+	.VERSION 0.3
 	.GUID e0a6966d-65c7-4ed7-8f6c-417fb2d43c5f
 	.AUTHOR Thor Dreier
 	.COMPANYNAME Thor Dreier
